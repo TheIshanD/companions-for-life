@@ -13,7 +13,7 @@ export default function Header(props : FooterProps) {
     return (
         <>
             <Flex direction="column">
-                <Flex direction="row" bg="gray.600" color="white" height="250px" p="20px" gap="20px">
+                <Flex direction="row" bg="gray.600" color="white" minH="250px" p="20px" gap="20px">
                     <Flex direction="column" height="100%" width="50%"> 
                         <Flex direction="column" width="75%" gap="10px">
                             <Heading size="lg">Companions For Life</Heading>
@@ -37,7 +37,7 @@ export default function Header(props : FooterProps) {
                         <Link 
                             maxW="200px" 
                             as={NextLink}
-                            href='/'
+                            href='/about'
                             _hover={{
                             textDecoration: "none",
                             color: "red.600"
@@ -49,7 +49,7 @@ export default function Header(props : FooterProps) {
                         <Link 
                             maxW="200px"
                             as={NextLink}
-                            href='/'
+                            href='/contact'
                             _hover={{
                             textDecoration: "none",
                             color: "red.600"
@@ -61,7 +61,7 @@ export default function Header(props : FooterProps) {
                         <Link 
                             maxW="200px"
                             as={NextLink}
-                            href='/'
+                            href='/donate'
                             _hover={{
                             textDecoration: "none",
                             color: "red.600"

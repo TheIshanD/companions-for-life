@@ -41,12 +41,21 @@ export default function Home() {
           </Text>
 
           <Flex direction="row" gap="5">
-            <Button colorScheme='teal'>
-              Partner With Us
-            </Button>
-            <Button colorScheme='yellow'>
-              Donate Now
-            </Button>
+            <Link as={NextLink} href='/contact'>
+              <Button colorScheme='teal'>
+                Partner With Us
+              </Button>
+            </Link>
+            <Link as={NextLink} href='/contact'>
+              <Button colorScheme='red'>
+                Join Our Team
+              </Button>
+            </Link>
+            <Link as={NextLink} href='/donate'>
+              <Button colorScheme='yellow'>
+                Donate Now
+              </Button>
+            </Link>
           </Flex>
         </Flex>
       </Box>

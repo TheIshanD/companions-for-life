@@ -5,6 +5,12 @@ import {
   Flex, Heading, Link, Box
  } from "@chakra-ui/react"
 
+ import Lottie from "lottie-react";
+
+
+import animationData from "../utils/2113-dog.json";
+
+
 interface HeaderProps {
     isOnMission? : boolean,
     isOnAbout? : boolean,
@@ -12,15 +18,23 @@ interface HeaderProps {
     isOnDonate? : boolean,
 }
 
+const style = {
+    height: 100,
+};
+
 export default function Header(props : HeaderProps) {
     const { isOnMission, isOnAbout, isOnContact, isOnDonate } = props;
 
     return (
         <Box>
         <Flex direction="row" bg="green.100" minW="100vw" h="75px" align="center" px="20px" color="black" justify="center" py="50px">
+            <Lottie animationData={animationData} loop={true} style={style} />
+
             <Heading as="h1" size="4xl">
             Companions For Life
             </Heading>
+
+            <Lottie animationData={animationData} loop={true} style={style} />
         </Flex>
 
         <Flex direction="row" gap="50px" bg="orange.100" justify="center" py="3">
