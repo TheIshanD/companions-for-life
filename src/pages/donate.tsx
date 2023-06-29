@@ -5,7 +5,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 
 import { 
-  Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, Divider
+  Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, Divider, RadioGroup, Radio, Tabs, TabList, TabPanels, Tab, TabPanel
  } from "@chakra-ui/react"
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
@@ -13,18 +13,20 @@ import ButtonWrapper from "../components/PayPalButton";
 
 import ManAndDogAnimData from "../utils/dog-and-man.json";
 import Lottie from "lottie-react";
+import React from 'react';
 
 const style = {
   height: 300,
 };
 
-const initialOptions = {
-  clientId: "teewfwefwst",
-  currency: "USD",
-  intent: "capture",
-};
-
 export default function DonatePage() {
+  const [donationAmount, setDonationAmount] = React.useState("1.00");
+  const [currency, setCurrency] = React.useState("USD")
+  const currencies = ["USD", "EUR", "INR"];
+  const onCurrencyChange = (index : number)=>{
+    setCurrency(currencies[index])
+  }
+
   return (
     <Flex direction="column" bg="red.100" minH="100vh">
         <Header isOnDonate={true}/>
@@ -58,24 +60,84 @@ export default function DonatePage() {
           <Flex 
           direction="column" 
           bg="white" 
-          width="50vw" 
-          height="90vh"
+          width="60vw" 
           p="10"
           borderRadius="25px"
           >
             <Heading color="red.600">Donation Options</Heading>
-            <Text color="red.600" fontSize="xs">If they fail to load, try reloading the page</Text>
-            <Divider />
-            <PayPalScriptProvider
-                options={{
-                    "clientId": "test",
-                    components: "buttons",
-                    currency: "USD"
+            {/* <Text color="red.600" fontSize="xs">If donation options fail to load, try reloading the page</Text> */}
+            <Divider mb="5"/>
+            <Flex direction="column" mb="5">
+              <Box>
+                <Tabs variant='enclosed' onChange={onCurrencyChange}>
+                  <TabList>
+                    <Tab>USD $</Tab>
+                    <Tab>EUR €</Tab>
+                    <Tab>INR ₹</Tab>
+                  </TabList>
+                  <TabPanels>
+                    <TabPanel>
+                      <Heading color="blue.600" size="md">Donation Amount: </Heading>
+                      <RadioGroup onChange={setDonationAmount} value={donationAmount}>
+                        <Flex direction='column'>
+                          <Radio value="1.00">$1.00</Radio>
+                          <Radio value="10.00">$10.00</Radio>
+                          <Radio value="100.00">$100.00</Radio>
+                          <Radio value="0.00">Custom InputBox Goes Here</Radio>
+                        </Flex>
+                      </RadioGroup>
+                    </TabPanel>
+                    <TabPanel>
+                      <Heading color="blue.600" size="md">Donation Amount: </Heading>
+                      <RadioGroup onChange={setDonationAmount} value={donationAmount}>
+                        <Flex direction='column'>
+                          <Radio value="1.00">€1.00</Radio>
+                          <Radio value="10.00">€10.00</Radio>
+                          <Radio value="100.00">€100.00</Radio>
+                          <Radio value="0.00">Custom InputBox Goes Here</Radio>
+                        </Flex>
+                      </RadioGroup>
+                    </TabPanel>
+                    <TabPanel>
+                      <Heading color="blue.600" size="md">Donation Amount: </Heading>
+                      <RadioGroup onChange={setDonationAmount} value={donationAmount}>
+                        <Flex direction='column'>
+                          <Radio value="1.00">₹100</Radio>
+                          <Radio value="10.00">₹1000</Radio>
+                          <Radio value="100.00">₹10000</Radio>
+                          <Radio value="0.00">Custom InputBox Goes Here</Radio>
+                        </Flex>
+                      </RadioGroup>
+                    </TabPanel>
+                  </TabPanels>
+                </Tabs>
+              </Box>
+            </Flex>
+
+            <PayPalScriptProvider options={{ clientId:"test", currency: currency }}>
+              <PayPalButtons 
+                // TODO: try adding label: 'donate' to style later
+                style={{layout: "horizontal"}} 
+                createOrder={(data, actions)=>{
+                  return actions.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          currency_code: currency,
+                          value: donationAmount
+                        }
+                      }
+                    ]
+                  })
                 }}
-            >
-                <ButtonWrapper
-                    currency={"USD"}
-                />
+
+                onApprove={(data, actions)=>{
+                  return actions.order?.capture().then(function (details){
+                    alert(
+                      "Transaction completed by " + details.payer.name?.given_name)
+                  })!
+                }}
+              />
             </PayPalScriptProvider>
           </Flex>
         </Flex>
