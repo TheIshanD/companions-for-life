@@ -5,11 +5,10 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 
 import { 
-  Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, Divider, RadioGroup, Radio, Tabs, TabList, TabPanels, Tab, TabPanel
+  Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, Divider, RadioGroup, Radio, Tabs, TabList, TabPanels, Tab, TabPanel, Input, NumberInput, NumberInputField, NumberIncrementStepper, NumberDecrementStepper, NumberInputStepper, Icon, InputGroup, InputLeftElement, InputRightElement, FormControl, Checkbox
  } from "@chakra-ui/react"
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import ButtonWrapper from "../components/PayPalButton";
 
 import ManAndDogAnimData from "../utils/dog-and-man.json";
 import Lottie from "lottie-react";
@@ -20,11 +19,76 @@ const style = {
 };
 
 export default function DonatePage() {
-  const [donationAmount, setDonationAmount] = React.useState("1.00");
-  const [currency, setCurrency] = React.useState("USD")
+  const [donationAmount, setDonationAmount] = React.useState(["1.00","1.00","100"]);
+  const [currency, setCurrency] = React.useState("USD");
+  const [donationPageIndex, setDonationPageIndex] = React.useState(0);
+  const [customAmount, setCustomAmount] = React.useState(["0.00","0.00","0"])
+  const [smallDonationError, SetSmallDonationError] = React.useState(false);
+
   const currencies = ["USD", "EUR", "INR"];
   const onCurrencyChange = (index : number)=>{
     setCurrency(currencies[index])
+  }
+
+  const OnCustomInputChanged = (event : any) => {
+
+    const word : string = event.target.value;
+    const value = (+word).toFixed(2);
+
+    const tmpCustomVals = [...customAmount];
+    tmpCustomVals[currencies.indexOf(currency)] = value;
+    setCustomAmount(tmpCustomVals);
+  }
+
+  const computePaypalFee = (donation : number)=> {
+    var percentFee = 0.0289
+    var fixedFee = 0;
+    //if international:
+    if(currency!='USD') {
+      percentFee += 0.015;
+    }
+
+    if(currency=="USD") {
+      fixedFee=0.49;
+    } else if (currency=="EUR") {
+      fixedFee=0.39;
+    }
+
+    const totalFee = donation * percentFee + fixedFee;
+
+    return totalFee;
+  } 
+
+  const currencyInd = ()=>{return currencies.indexOf(currency)}
+  const donationCode = ()=>{return donationAmount[currencyInd()]}
+  const donationValue = ()=>{return donationCode()=="custom"?+customAmount[0]:+donationCode()}
+  const currencySymbol = ()=>{return ["$","€","₹"][currencyInd()]}
+  const totalPaymentVal = ()=>{return (computePaypalFee(donationValue()) + donationValue()).toFixed(2).toString()}
+
+  const OnNextClicked = ()=> {
+    const currVal = donationValue();
+
+    if(currency=="USD" || currency=="EUR") {
+      if(currVal < 1) {
+        SetSmallDonationError(true);
+      } else {
+        setDonationPageIndex(donationPageIndex+1)
+        SetSmallDonationError(false);
+      }
+    } else if (currency=="INR"){
+      if(currVal < 100) {
+        SetSmallDonationError(true);
+      } else {
+        setDonationPageIndex(donationPageIndex+1)
+        SetSmallDonationError(false);
+      }
+    }
+  }
+
+  const onRadioChange = (val : string)=>{
+    const tmpDonoAmt = [...donationAmount];
+    tmpDonoAmt[currencyInd()] = val;
+    setDonationAmount(tmpDonoAmt);
   }
 
   return (
@@ -60,85 +124,173 @@ export default function DonatePage() {
           <Flex 
           direction="column" 
           bg="white" 
-          width="60vw" 
+          minW="50vw" 
           p="10"
           borderRadius="25px"
+          minH="65vh"
           >
-            <Heading color="red.600">Donation Options</Heading>
+            <Heading color="red.600">Donation Form</Heading>
             {/* <Text color="red.600" fontSize="xs">If donation options fail to load, try reloading the page</Text> */}
             <Divider mb="5"/>
-            <Flex direction="column" mb="5">
+            <Flex direction="column" mb="5" hidden={donationPageIndex!=0}>
               <Box>
-                <Tabs variant='enclosed' onChange={onCurrencyChange}>
+                <Tabs variant='enclosed' onChange={onCurrencyChange} isFitted>
                   <TabList>
                     <Tab>USD $</Tab>
                     <Tab>EUR €</Tab>
-                    <Tab>INR ₹</Tab>
+                    {/* <Tab>INR ₹</Tab> */}
                   </TabList>
                   <TabPanels>
                     <TabPanel>
                       <Heading color="blue.600" size="md">Donation Amount: </Heading>
-                      <RadioGroup onChange={setDonationAmount} value={donationAmount}>
-                        <Flex direction='column'>
+                      <RadioGroup onChange={(val)=>{onRadioChange(val)}} value={donationAmount[currencyInd()]}>
+                        <Flex direction="column">
                           <Radio value="1.00">$1.00</Radio>
                           <Radio value="10.00">$10.00</Radio>
                           <Radio value="100.00">$100.00</Radio>
-                          <Radio value="0.00">Custom InputBox Goes Here</Radio>
+                          <Radio value="custom">Use Custom Donation:</Radio>
+
+                          <InputGroup ml="5">
+                          <InputLeftElement pointerEvents='none'>
+                            <Icon color='gray.300' />
+                          </InputLeftElement>
+
+                            <Input
+                              onChange={(event)=>{OnCustomInputChanged(event)}}
+                              isDisabled={(donationCode() != "custom")}
+                              defaultValue="0.00"
+                              placeholder="Enter Donation Amount in US Dollars"
+                              size="md"
+                              type="number"  
+                            />
+
+                            <InputRightElement>
+                              <Icon color='green.500' />
+                            </InputRightElement>
+                          </InputGroup>
+                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least $1.00</Text>}
                         </Flex>
+
                       </RadioGroup>
+
                     </TabPanel>
+                    {/* TODO: WORK ON THIS */}
                     <TabPanel>
                       <Heading color="blue.600" size="md">Donation Amount: </Heading>
-                      <RadioGroup onChange={setDonationAmount} value={donationAmount}>
+                      <RadioGroup onChange={(val)=>{onRadioChange(val)}} value={donationAmount[currencyInd()]}>
                         <Flex direction='column'>
                           <Radio value="1.00">€1.00</Radio>
                           <Radio value="10.00">€10.00</Radio>
                           <Radio value="100.00">€100.00</Radio>
-                          <Radio value="0.00">Custom InputBox Goes Here</Radio>
+                          <Radio value="custom">Use Custom Donation:</Radio>
+
+                          <InputGroup ml="5">
+                          <InputLeftElement pointerEvents='none'>
+                            <Icon color='gray.300' />
+                          </InputLeftElement>
+
+                            <Input
+                              onChange={(event)=>{OnCustomInputChanged(event)}}
+                              isDisabled={(donationCode() != "custom")}
+                              defaultValue="0.00"
+                              placeholder="Enter Donation Amount in Euros"
+                              size="md"
+                              type="number"  
+                            />
+
+                            <InputRightElement>
+                              <Icon color='green.500' />
+                            </InputRightElement>
+                          </InputGroup>
+                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least €1.00</Text>}
+
                         </Flex>
                       </RadioGroup>
                     </TabPanel>
                     <TabPanel>
                       <Heading color="blue.600" size="md">Donation Amount: </Heading>
-                      <RadioGroup onChange={setDonationAmount} value={donationAmount}>
+                      <RadioGroup onChange={(val)=>{onRadioChange(val)}} value={donationAmount[currencyInd()]}>
                         <Flex direction='column'>
-                          <Radio value="1.00">₹100</Radio>
-                          <Radio value="10.00">₹1000</Radio>
-                          <Radio value="100.00">₹10000</Radio>
-                          <Radio value="0.00">Custom InputBox Goes Here</Radio>
+                          <Radio value="100">₹100</Radio>
+                          <Radio value="1000">₹1000</Radio>
+                          <Radio value="10000">₹10000</Radio>
+                          <Radio value="custom">Use Custom Donation:</Radio>
+
+                          <InputGroup ml="5">
+                          <InputLeftElement pointerEvents='none'>
+                            <Icon color='gray.300' />
+                          </InputLeftElement>
+
+                            <Input
+                              onChange={(event)=>{OnCustomInputChanged(event)}}
+                              isDisabled={(donationCode() != "custom")}
+                              defaultValue="0.00"
+                              placeholder="Enter Donation Amount in Indian Rupees"
+                              size="md"
+                              type="number"  
+                            />
+
+                            <InputRightElement>
+                              <Icon color='green.500' />
+                            </InputRightElement>
+                          </InputGroup>
+                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least ₹100</Text>}
+
                         </Flex>
                       </RadioGroup>
+  
                     </TabPanel>
+
                   </TabPanels>
                 </Tabs>
+                
+                <Checkbox defaultChecked>Cover Paypal's Donation Fee of ~{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(computePaypalFee(donationValue()))} with
+                       your {Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(donationValue())} donation</Checkbox>
               </Box>
             </Flex>
 
-            <PayPalScriptProvider options={{ clientId:"test", currency: currency }}>
-              <PayPalButtons 
-                // TODO: try adding label: 'donate' to style later
-                style={{layout: "horizontal"}} 
-                createOrder={(data, actions)=>{
-                  return actions.order.create({
-                    purchase_units: [
-                      {
-                        amount: {
-                          currency_code: currency,
-                          value: donationAmount
-                        }
-                      }
-                    ]
-                  })
-                }}
+            <Flex direction="column" hidden={donationPageIndex!=1}>
+              <Heading size="4xl" color="green" mb="5">{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(+totalPaymentVal())}</Heading>
+              <Heading size="lg">Pay Now</Heading>
 
-                onApprove={(data, actions)=>{
-                  return actions.order?.capture().then(function (details){
-                    alert(
-                      "Transaction completed by " + details.payer.name?.given_name)
-                  })!
-                }}
-              />
-            </PayPalScriptProvider>
+              <PayPalScriptProvider options={{ clientId:"test", currency: currency }}>
+                <PayPalButtons 
+                  // TODO: try adding label: 'donate' to style later
+                  style={{layout: "horizontal"}} 
+                  createOrder={(data, actions)=>{
+                    return actions.order.create({
+                      purchase_units: [
+                        {
+                          amount: {
+                            currency_code: currency,
+                            value: totalPaymentVal(),
+                          }
+                        }
+                      ]
+                    })
+                  }}
+
+                  onApprove={(data, actions)=>{
+                    return actions.order?.capture().then(function (details){
+                      alert(
+                        "Transaction completed by " + details.payer.name?.given_name)
+                    })!
+                  }}
+                />
+              </PayPalScriptProvider>
+            </Flex>
+
+            <Spacer></Spacer>
+            <Flex direction="row" gap="10"  mt="5">
+              <Box width="50%" hidden={donationPageIndex!=0}/>
+              <Button width="50%" colorScheme='yellow' hidden={donationPageIndex==0} onClick={()=>{setDonationPageIndex(donationPageIndex-1)}}>
+                Back
+              </Button>
+              <Button width="50%" colorScheme='yellow' hidden={donationPageIndex==1} onClick={OnNextClicked}>
+                Next
+              </Button>
+              <Box width="50%" hidden={donationPageIndex!=1}/>
+            </Flex>
           </Flex>
         </Flex>
         <Footer/>

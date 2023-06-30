@@ -120,27 +120,6 @@ export default function AboutPage() {
             
             <SimpleGrid minChildWidth='400px' spacing='40px'>
 
-              <Card maxW='sm' bg="white">
-                <CardBody>
-                  <Image
-                    src='https://media.licdn.com/dms/image/D5603AQHSh6HNmssAgA/profile-displayphoto-shrink_800_800/0/1686180407902?e=2147483647&v=beta&t=qVmSNaHshXEI6-nrz18BC6Cwff74Gke57t7pBfPYY9k'
-                    alt='Green double couch with wooden legs'
-                    borderRadius='lg'
-                  />
-                  <Flex direction="column" mt='6' gap='3'>
-                    <Heading size='md'>Ishan Dasgupta</Heading>
-                    <Text>
-                      I love programming!
-                    </Text>
-                    <Flex direction="row" gap="5">
-                      <Icon />
-                      <Icon />
-                      <Icon />
-                    </Flex>
-                  </Flex>
-                </CardBody>
-              </Card>
-
               <Card maxW="sm" bg="white">
                 <CardBody>
                   <Image
@@ -152,6 +131,27 @@ export default function AboutPage() {
                     <Heading size='md'>Warren Huang</Heading>
                     <Text>
                       I love giving prisoners pets!
+                    </Text>
+                    <Flex direction="row" gap="5">
+                      <Icon />
+                      <Icon />
+                      <Icon />
+                    </Flex>
+                  </Flex>
+                </CardBody>
+              </Card>
+
+              <Card maxW='sm' bg="white">
+                <CardBody>
+                  <Image
+                    src='https://media.licdn.com/dms/image/D5603AQHSh6HNmssAgA/profile-displayphoto-shrink_800_800/0/1686180407902?e=2147483647&v=beta&t=qVmSNaHshXEI6-nrz18BC6Cwff74Gke57t7pBfPYY9k'
+                    alt='Green double couch with wooden legs'
+                    borderRadius='lg'
+                  />
+                  <Flex direction="column" mt='6' gap='3'>
+                    <Heading size='md'>Ishan Dasgupta</Heading>
+                    <Text>
+                      I love programming!
                     </Text>
                     <Flex direction="row" gap="5">
                       <Icon />
