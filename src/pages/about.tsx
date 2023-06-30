@@ -8,13 +8,16 @@ import {
   Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, SimpleGrid, Card, CardHeader, CardBody, CardFooter, Icon
  } from "@chakra-ui/react"
 
+ import { FaGithub, FaInstagram, FaLink, FaLinkedin } from "react-icons/fa";
+
+
 export default function AboutPage() {
   return (
     <Flex direction="column" bg="red.100" minH="100vh">
         <Header isOnAbout={true}/>
 
         <Flex direction="column" bg="white">
-          <Flex direction="column" gap="5" bg="lightblue" p="10">
+          <Flex direction="column" gap="5" bg="#ADD8E6" p="10">
 
             <Flex direction="row" align="end" gap="5">
               <Heading size="3xl">Partners</Heading>
@@ -31,16 +34,16 @@ export default function AboutPage() {
                 <CardBody>
                     <Image
                       src='data:image/jpeg;base64,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'
-                      alt='Green double couch with wooden legs'
+                      alt='image'
                       borderRadius='lg'
                     />
                   <Flex direction="column" mt='6' gap='3'>
                     <Heading size='md'>Paws In Prison</Heading>
                     <Text>
-                      We are thankful of the valuable advice of Mrs. Keaton whose guidance taught us the first steps we needed to take (link website)
+                      We are thankful of the valuable advice of Mrs. Keaton whose guidance taught us the first steps we needed to take
                     </Text>
                     <Flex direction="row" gap="5">
-                      <Icon />
+                      <chakra.a href="https://www.pawsinprison.com/mission" _hover={{color: "red.600"}} target='_blank'><Icon boxSize="40px" as={FaLink}/></chakra.a>
                     </Flex>
                   </Flex>
                 </CardBody>
@@ -59,7 +62,6 @@ export default function AboutPage() {
                       for now just say we are thankful of the support of the sheriff
                     </Text>
                     <Flex direction="row" gap="5">
-                      <Icon />
                     </Flex>
                   </Flex>
                 </CardBody>
@@ -78,7 +80,6 @@ export default function AboutPage() {
                       for now just say we are thankful of the support of the sheriff
                     </Text>
                     <Flex direction="row" gap="5">
-                      <Icon />
                     </Flex>
                   </Flex>
                 </CardBody>
@@ -88,7 +89,7 @@ export default function AboutPage() {
                 <CardBody>
                     <Image 
                       src="https://static.wixstatic.com/media/6cd9a7_5796fb5453d04c66a907e927e2b9d3a5~mv2.png/v1/crop/x_0,y_165,w_1786,h_1123/fill/w_420,h_264,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/hsctx%20pride_edited.png"
-                      alt='image goes here'
+                      alt='image'
                       borderRadius='lg'
                     />
                   <Flex direction="column" mt='6' gap='3'>
@@ -97,7 +98,7 @@ export default function AboutPage() {
                       we are thankful for the encouragement and willingness to supply shelter animals for us to connect with prisoners
                     </Text>
                     <Flex direction="row" gap="5">
-                      <Icon />
+                      <chakra.a href="https://www.humanesocietycentraltexas.org/contactsupport" _hover={{color: "red.600"}} target='_blank'><Icon boxSize="40px" as={FaLink}/></chakra.a>
                     </Flex>
                   </Flex>
                 </CardBody>
@@ -106,7 +107,9 @@ export default function AboutPage() {
             </SimpleGrid>
           </Flex>
 
-          <Flex direction="column" gap="5" p="10" bg="lightgreen">
+          <svg id="visual" viewBox="0 0 3200 225" xmlns="http://www.w3.org/2000/svg" version="1.1"><rect x="0" y="0" width="100%" height="100vh" fill="#ADD8E6"></rect><path d="M0 66L26.7 66.2C53.3 66.3 106.7 66.7 160 84.2C213.3 101.7 266.7 136.3 320 150.7C373.3 165 426.7 159 480 157.7C533.3 156.3 586.7 159.7 640 149.2C693.3 138.7 746.7 114.3 800 112.5C853.3 110.7 906.7 131.3 960 145.5C1013.3 159.7 1066.7 167.3 1120 159.7C1173.3 152 1226.7 129 1280 125C1333.3 121 1386.7 136 1440 127.5C1493.3 119 1546.7 87 1600 87.5C1653.3 88 1706.7 121 1760 137.8C1813.3 154.7 1866.7 155.3 1920 160.2C1973.3 165 2026.7 174 2080 164.3C2133.3 154.7 2186.7 126.3 2240 120.7C2293.3 115 2346.7 132 2400 124.8C2453.3 117.7 2506.7 86.3 2560 74.3C2613.3 62.3 2666.7 69.7 2720 78.2C2773.3 86.7 2826.7 96.3 2880 95.7C2933.3 95 2986.7 84 3040 75.2C3093.3 66.3 3146.7 59.7 3173.3 56.3L3200 53L3200 226L3173.3 226C3146.7 226 3093.3 226 3040 226C2986.7 226 2933.3 226 2880 226C2826.7 226 2773.3 226 2720 226C2666.7 226 2613.3 226 2560 226C2506.7 226 2453.3 226 2400 226C2346.7 226 2293.3 226 2240 226C2186.7 226 2133.3 226 2080 226C2026.7 226 1973.3 226 1920 226C1866.7 226 1813.3 226 1760 226C1706.7 226 1653.3 226 1600 226C1546.7 226 1493.3 226 1440 226C1386.7 226 1333.3 226 1280 226C1226.7 226 1173.3 226 1120 226C1066.7 226 1013.3 226 960 226C906.7 226 853.3 226 800 226C746.7 226 693.3 226 640 226C586.7 226 533.3 226 480 226C426.7 226 373.3 226 320 226C266.7 226 213.3 226 160 226C106.7 226 53.3 226 26.7 226L0 226Z" fill="#90EE90" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
+          
+          <Flex direction="column" gap="5" p="10" bg="#90EE90">
 
             <Flex direction="row" align="end" gap="5">
               <Heading size="3xl">Team</Heading>
@@ -124,7 +127,7 @@ export default function AboutPage() {
                 <CardBody>
                   <Image
                     src='https://media.licdn.com/dms/image/D5603AQFciK0GmJ1UqQ/profile-displayphoto-shrink_800_800/0/1683444317928?e=2147483647&v=beta&t=Gg6CQo_SwDHIg2z60BiVQHGMzrg_-uTKoXNZdVLBxys'
-                    alt='Green double couch with wooden legs'
+                    alt='image'
                     borderRadius='lg'
                   />
                   <Flex direction="column" mt='6' gap='3'>
@@ -133,9 +136,8 @@ export default function AboutPage() {
                       I love giving prisoners pets!
                     </Text>
                     <Flex direction="row" gap="5">
-                      <Icon />
-                      <Icon />
-                      <Icon />
+                      <chakra.a href="https://www.linkedin.com/in/wrh1" _hover={{color: "red.600"}} target='_blank'><Icon boxSize="40px" as={FaLinkedin}/></chakra.a>
+                      <chakra.a href="https://www.instagram.com/warrenhuangg/" _hover={{color: "red.600"}} target='_blank'><Icon boxSize="40px" as={FaInstagram}/></chakra.a>
                     </Flex>
                   </Flex>
                 </CardBody>
@@ -154,9 +156,10 @@ export default function AboutPage() {
                       I love programming!
                     </Text>
                     <Flex direction="row" gap="5">
-                      <Icon />
-                      <Icon />
-                      <Icon />
+                      <chakra.a href="https://ishandasgupta.vercel.app/" _hover={{color: "red.600"}} target='_blank'><Icon boxSize="40px" as={FaLink}/></chakra.a>
+                      <chakra.a href="https://github.com/TheIshanD" _hover={{color: "red.600"}} target='_blank'><Icon boxSize="40px" as={FaGithub}/></chakra.a>
+                      <chakra.a href="https://www.linkedin.com/in/ishan-dasgupta-550a9b1bb/" _hover={{color: "red.600"}} target='_blank'><Icon boxSize="40px" as={FaLinkedin}/></chakra.a>
+                      <chakra.a href="https://www.instagram.com/ishan_dasgupta/" _hover={{color: "red.600"}} target='_blank'><Icon boxSize="40px" as={FaInstagram}/></chakra.a>
                     </Flex>
                   </Flex>
                 </CardBody>

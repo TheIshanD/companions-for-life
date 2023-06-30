@@ -53,12 +53,9 @@ export default function Header(props : HeaderProps) {
             }
             {isOnMission && 
             <Link 
-                as={NextLink}
-                href='/'
                 color="blue.600"
                 _hover={{
                 textDecoration: "none",
-                color: "red.600"
                 }}>
                 <Heading as="h1" size="md">
                 Mission
@@ -81,12 +78,9 @@ export default function Header(props : HeaderProps) {
             }
             {isOnAbout && 
             <Link 
-                as={NextLink}
-                href='/about'
                 color="blue.600"
                 _hover={{
                 textDecoration: "none",
-                color: "red.600"
                 }}>
                 <Heading as="h1" size="md">
                 The Team
@@ -109,12 +103,9 @@ export default function Header(props : HeaderProps) {
             }
             {isOnContact && 
             <Link 
-                as={NextLink}
-                href='/contact'
                 color="blue.600"
                 _hover={{
                 textDecoration: "none",
-                color: "red.600"
                 }}>
                 <Heading as="h1" size="md">
                 Contact
@@ -137,12 +128,9 @@ export default function Header(props : HeaderProps) {
             }
             {isOnDonate && 
             <Link 
-                as={NextLink}
-                href='/donate'
                 color="blue.600"
                 _hover={{
                 textDecoration: "none",
-                color: "red.600"
                 }}>
                 <Heading as="h1" size="md">
                 Donate

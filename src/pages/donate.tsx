@@ -56,7 +56,8 @@ export default function DonatePage() {
 
     const totalFee = donation * percentFee + fixedFee;
 
-    return totalFee;
+    // return totalFee;
+    return 0;
   } 
 
   const currencyInd = ()=>{return currencies.indexOf(currency)}
@@ -168,7 +169,7 @@ export default function DonatePage() {
                               <Icon color='green.500' />
                             </InputRightElement>
                           </InputGroup>
-                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least $1.00</Text>}
+                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least {currencySymbol()}1.00</Text>}
                         </Flex>
 
                       </RadioGroup>
@@ -202,7 +203,7 @@ export default function DonatePage() {
                               <Icon color='green.500' />
                             </InputRightElement>
                           </InputGroup>
-                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least €1.00</Text>}
+                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least {currencySymbol()}1.00</Text>}
 
                         </Flex>
                       </RadioGroup>
@@ -234,16 +235,14 @@ export default function DonatePage() {
                               <Icon color='green.500' />
                             </InputRightElement>
                           </InputGroup>
-                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least ₹100</Text>}
+                          {smallDonationError && <Text ml="5" fontSize="sm" color="red.600">Donation must be at least {currencySymbol()}100</Text>}
 
                         </Flex>
                       </RadioGroup>
-  
                     </TabPanel>
-
                   </TabPanels>
                 </Tabs>
-                
+
                 <Checkbox defaultChecked>Cover Paypal's Donation Fee of ~{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(computePaypalFee(donationValue()))} with
                        your {Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(donationValue())} donation</Checkbox>
               </Box>
