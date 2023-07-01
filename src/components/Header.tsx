@@ -27,7 +27,7 @@ export default function Header(props : HeaderProps) {
 
     return (
         <Box>
-        <Flex direction="row" bg="green.100" minW="100vw" h="75px" align="center" px="20px" color="black" justify="center" py="50px">
+        <Flex direction="row" bg="green.100" h="75px" align="center" px="20px" color="black" justify="center" py="50px">
             <Lottie animationData={animationData} loop={true} style={style} />
 
             <Heading as="h1" size="4xl">

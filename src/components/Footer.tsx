@@ -11,7 +11,7 @@ interface FooterProps {
 export default function Header(props : FooterProps) {
 
     return (
-        <>
+        <Box>
             <Flex direction="column">
                 <Flex direction="row" bg="gray.600" color="white" minH="250px" p="20px" gap="20px">
                     <Flex direction="column" height="100%" width="50%"> 
@@ -80,6 +80,6 @@ export default function Header(props : FooterProps) {
                     </Flex>
                 </Flex>
             </Flex>
-        </>
+        </Box>
     )
 }
