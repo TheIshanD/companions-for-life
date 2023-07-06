@@ -41,7 +41,7 @@ Sincerely,
 [PREFERRED_CONTACT]`;
 
 
-const otherSubject = "[Insert Subject Here]";
+const otherSubject = "";
 const otherBody = 
 ``;
 
@@ -73,16 +73,17 @@ export default function ContactPage() {
 
   return (
     <Flex direction="column" bg="red.100" minH="100vh">
-      <chakra.script src="https://smtpjs.com/v3/smtp.js"></chakra.script>
         <Header isOnContact={true}/>
 
-        <Flex direction="column" bg="lightgreen">
-          <Flex id="contact-info-box" direction="column" m="20" mb="0" bg="whitesmoke" p="5" borderTopRadius="25px" borderBottom="2px solid black">
-            <Heading>Contact Information</Heading>
-            <Text>{email}</Text>
-            <Text>1-512-555-555</Text>
-          </Flex>
-          <Flex direction="column" m="20" mt="0" bg="whitesmoke" p="5" borderBottomRadius="25px" borderTop="2px solid black" gap="5">
+        <Flex direction="column" bg="brand.400" p="50px">
+          <Flex direction="column" border="4px solid" borderColor="black" borderRadius="25px">
+            <Flex id="contact-info-box" direction="column" bg="whitesmoke" p="5" borderTopRadius="25px" borderBottom="2px solid black" >
+              <Heading>Contact Information</Heading>
+              <Text>{email}</Text>
+              <Text>1-512-555-555</Text>
+            </Flex>
+
+            <Flex direction="column" bg="whitesmoke" p="5" borderBottomRadius="25px" borderTop="2px solid black" gap="5">
               <Heading>Email Template Generator</Heading>
 
               <FormControl>
@@ -112,6 +113,7 @@ export default function ContactPage() {
                 <Button colorScheme='yellow' onClick={()=>{onButtonClick()}}>Open in email</Button>
                 <FormHelperText>Either copy and paste email or open in your computer's default email</FormHelperText>
               </FormControl>
+            </Flex>
           </Flex>
         </Flex>
         <Footer/>

@@ -27,7 +27,7 @@ export default function Header(props : HeaderProps) {
 
     return (
         <Box>
-        <Flex direction="row" bg="green.100" h="75px" align="center" px="20px" color="black" justify="center" py="50px">
+        <Flex direction="row" bg="brand.200" h="75px" align="center" px="20px" color="black" justify="center" py="50px" border="4px solid" borderColor="black" borderBottom="none" borderX="none">
             <Lottie animationData={animationData} loop={true} style={style} />
 
             <Heading as="h1" size="4xl">
@@ -37,14 +37,14 @@ export default function Header(props : HeaderProps) {
             <Lottie animationData={animationData} loop={true} style={style} />
         </Flex>
 
-        <Flex direction="row" gap="50px" bg="orange.100" justify="center" py="3">
+        <Flex direction="row" gap="50px" bg="white" justify="center" py="3" border="4px solid" borderColor="black" borderX="none">
             {!isOnMission && 
             <Link 
                 as={NextLink}
                 href='/'
                 _hover={{
                 textDecoration: "none",
-                color: "red.600"
+                color: "red.600",
                 }}>
                 <Heading as="h1" size="md">
                 Mission
@@ -57,7 +57,7 @@ export default function Header(props : HeaderProps) {
                 _hover={{
                 textDecoration: "none",
                 }}>
-                <Heading as="h1" size="md">
+                <Heading as="h1" size="md" fontWeight="900">
                 Mission
                 </Heading>
             </Link>
@@ -82,7 +82,7 @@ export default function Header(props : HeaderProps) {
                 _hover={{
                 textDecoration: "none",
                 }}>
-                <Heading as="h1" size="md">
+                <Heading as="h1" size="md" fontWeight="900">
                 The Team
                 </Heading>
             </Link>
@@ -107,7 +107,7 @@ export default function Header(props : HeaderProps) {
                 _hover={{
                 textDecoration: "none",
                 }}>
-                <Heading as="h1" size="md">
+                <Heading as="h1" size="md" fontWeight="900">
                 Contact
                 </Heading>
             </Link>
@@ -132,7 +132,7 @@ export default function Header(props : HeaderProps) {
                 _hover={{
                 textDecoration: "none",
                 }}>
-                <Heading as="h1" size="md">
+                <Heading as="h1" size="md" fontWeight="900">
                 Donate
                 </Heading>
             </Link>
