@@ -9,6 +9,8 @@ import {
  } from "@chakra-ui/react"
 import React, { useEffect } from 'react'
 
+import { FaEnvelope, FaPhone } from "react-icons/fa";
+
 const email = "yourdomain@gmail.com";
 
 const partnerSubject = `Potential Partnership Between [ORGANIZATION] and Companions For Life`;
@@ -75,24 +77,30 @@ export default function ContactPage() {
     <Flex direction="column" bg="red.100" minH="100vh">
         <Header isOnContact={true}/>
 
-        <Flex direction="column" bg="brand.400" p="50px">
+        <Flex direction="column" bg="brand.400" p={["20px","20px","40px"]}>
           <Flex direction="column" border="4px solid" borderColor="black" borderRadius="25px">
             <Flex id="contact-info-box" direction="column" bg="whitesmoke" p="5" borderTopRadius="25px" borderBottom="2px solid black" >
-              <Heading>Contact Information</Heading>
-              <Text>{email}</Text>
-              <Text>1-512-555-555</Text>
+              <Heading mb="10px" size="2xl" fontWeight="900">Contact Information</Heading>
+              <Flex direction="row" gap="10px" align="center">
+                <FaEnvelope />
+                <Text fontSize="2xl">{email}</Text>
+              </Flex>
+              <Flex direction="row" gap="10px" align="center">
+                <FaPhone />
+                <Text fontSize="2xl">1-512-555-555</Text>
+              </Flex>
             </Flex>
 
             <Flex direction="column" bg="whitesmoke" p="5" borderBottomRadius="25px" borderTop="2px solid black" gap="5">
-              <Heading>Email Template Generator</Heading>
+              <Heading fontWeight="900" size="2xl">Email Template Generator</Heading>
 
               <FormControl>
                 <FormLabel>Reason For Email</FormLabel>
                 <RadioGroup onChange={setReason} value={reason}>
-                  <Flex direction='row' gap="10">
-                    <Radio value='partner'>Partnership</Radio>
-                    <Radio value='team'>Joining the Team</Radio>
-                    <Radio value='other'>Other</Radio>
+                  <Flex direction={["column","column","row"]} gap={["10px","10px","40px"]}>
+                    <Radio value='partner' bgColor="brand.100">Partnership</Radio>
+                    <Radio value='team' bgColor="brand.100">Joining the Team</Radio>
+                    <Radio value='other' bgColor="brand.100">Other</Radio>
                   </Flex>
                 </RadioGroup>
                 <FormHelperText>*Changing your selection will reset the subject and body text</FormHelperText>
@@ -100,17 +108,18 @@ export default function ContactPage() {
 
               <FormControl>
                 <FormLabel>Subject Line</FormLabel>
-                <Input placeholder="Sample Subject Line" value={subjectLineValue} onChange={(e)=>{setSubjectLineValue(e.target.value)}}/>
-                {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
-              </FormControl>
-              <FormControl>
-                <FormLabel>Body</FormLabel>
-                <Textarea minH="400px" placeholder='Sample Email Body' resize="vertical" value={bodyValue} onChange={(e)=>{setBodyValue(e.target.value)}}/>
+                <Input placeholder="Sample Subject Line" value={subjectLineValue} onChange={(e)=>{setSubjectLineValue(e.target.value)}} bgColor="brand.100"/>
                 {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
               </FormControl>
 
               <FormControl>
-                <Button colorScheme='yellow' onClick={()=>{onButtonClick()}}>Open in email</Button>
+                <FormLabel>Body</FormLabel>
+                <Textarea minH="400px" placeholder='Sample Email Body' resize="vertical" value={bodyValue} onChange={(e)=>{setBodyValue(e.target.value)}} bgColor="brand.100"/>
+                {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
+              </FormControl>
+
+              <FormControl>
+                <Button colorScheme='yellow' onClick={()=>{onButtonClick()}} border="4px solid" borderColor="black" fontWeight="900">Open in Email</Button>
                 <FormHelperText>Either copy and paste email or open in your computer's default email</FormHelperText>
               </FormControl>
             </Flex>

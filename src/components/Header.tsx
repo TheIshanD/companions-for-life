@@ -27,17 +27,17 @@ export default function Header(props : HeaderProps) {
 
     return (
         <Box>
-        <Flex direction="row" bg="brand.200" h="75px" align="center" px="20px" color="black" justify="center" py="50px" border="4px solid" borderColor="black" borderBottom="none" borderX="none">
+        <Flex direction="row" gap="30px" bg="brand.200" h="75px" align="center" px="20px" color="black" justify="center" py="50px" border="4px solid" borderColor="black" borderBottom="none" borderX="none">
             <Lottie animationData={animationData} loop={true} style={style} />
 
-            <Heading as="h1" size="4xl">
+            <Heading as="h1" size={["xl","xl","xl","2xl"]} textAlign="center" fontWeight="900">
             Companions For Life
             </Heading>
 
             <Lottie animationData={animationData} loop={true} style={style} />
         </Flex>
 
-        <Flex direction="row" gap="50px" bg="white" justify="center" py="3" border="4px solid" borderColor="black" borderX="none">
+        <Flex direction="row" align="center" gap="50px" bg="white" justify="center" py="3" border="4px solid" borderColor="black" borderX="none">
             {!isOnMission && 
             <Link 
                 as={NextLink}
@@ -46,7 +46,7 @@ export default function Header(props : HeaderProps) {
                 textDecoration: "none",
                 color: "red.600",
                 }}>
-                <Heading as="h1" size="md">
+                <Heading as="h1" fontSize={["lg","lg","2xl"]}>
                 Mission
                 </Heading>
             </Link>
@@ -57,7 +57,7 @@ export default function Header(props : HeaderProps) {
                 _hover={{
                 textDecoration: "none",
                 }}>
-                <Heading as="h1" size="md" fontWeight="900">
+                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
                 Mission
                 </Heading>
             </Link>
@@ -71,7 +71,7 @@ export default function Header(props : HeaderProps) {
                 textDecoration: "none",
                 color: "red.600"
                 }}>
-                <Heading as="h1" size="md">
+                <Heading as="h1" fontSize={["lg","lg","2xl"]}>
                 The Team
                 </Heading>
             </Link>
@@ -82,7 +82,7 @@ export default function Header(props : HeaderProps) {
                 _hover={{
                 textDecoration: "none",
                 }}>
-                <Heading as="h1" size="md" fontWeight="900">
+                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
                 The Team
                 </Heading>
             </Link>
@@ -96,7 +96,7 @@ export default function Header(props : HeaderProps) {
                 textDecoration: "none",
                 color: "red.600"
                 }}>
-                <Heading as="h1" size="md">
+                <Heading as="h1" fontSize={["lg","lg","2xl"]}>
                 Contact
                 </Heading>
             </Link>
@@ -107,7 +107,7 @@ export default function Header(props : HeaderProps) {
                 _hover={{
                 textDecoration: "none",
                 }}>
-                <Heading as="h1" size="md" fontWeight="900">
+                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
                 Contact
                 </Heading>
             </Link>
@@ -121,7 +121,7 @@ export default function Header(props : HeaderProps) {
                 textDecoration: "none",
                 color: "red.600"
                 }}>
-                <Heading as="h1" size="md">
+                <Heading as="h1" fontSize={["lg","lg","2xl"]}>
                 Donate
                 </Heading>
             </Link>
@@ -132,7 +132,7 @@ export default function Header(props : HeaderProps) {
                 _hover={{
                 textDecoration: "none",
                 }}>
-                <Heading as="h1" size="md" fontWeight="900">
+                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
                 Donate
                 </Heading>
             </Link>

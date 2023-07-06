@@ -96,22 +96,23 @@ export default function DonatePage() {
     <Flex direction="column" bg="red.100" minH="100vh">
         <Header isOnDonate={true}/>
 
-        <Flex direction="row" justify="center" color="blue.600"
+        <Flex direction={["column","column","row"]} justify="center"
           background="brand.300"
           backgroundSize="30px 30px"
-          p="10"
-          
+          p={["10px","20px","40px"]}
         >
-          <Flex direction="column" width="70vw" bg="brand.100" p="10" borderRadius="25px" border="4px solid" borderColor="black" borderRightRadius="0px" borderRight="none">
-            <Heading size="xl" mb="2">Where Does Your Money Go?</Heading>
+          <Flex direction={["column","column","row"]} m="auto">
+            <Flex direction="column" width={["90vw","90vw","60vw"]} bg="brand.100" p="10" borderRadius={["0px","0px","25px"]} border="4px solid" borderColor="black" borderRightRadius={["0","0","0"]} borderRight={["4px solid","4px solid","none"]}>
+              <Heading size="2xl" mb="2" fontWeight="900">Where Does Your Money Go?</Heading>
 
-            <Text fontSize="2xl" mb="16">We bring <chakra.span color="pink.600" fontWeight="extrabold">shelter animals</chakra.span>, fated to be <chakra.span color="black" fontWeight="extrabold">euthanized</chakra.span>, to prisons, to be cared for by <chakra.span color="green.600" fontWeight="extrabold">approved prisoners</chakra.span></Text>
-          </Flex>
+              <Text fontSize="2xl" mb="16">We bring <chakra.span color="pink.600" fontWeight="extrabold">shelter animals</chakra.span>, fated to be <chakra.span color="black" fontWeight="extrabold">euthanized</chakra.span>, to prisons, to be cared for by <chakra.span color="green.600" fontWeight="extrabold">approved prisoners</chakra.span></Text>
+            </Flex>
 
-          <Flex direction="column" width="30vw" bg="brand.500" p="10" borderRightRadius="25px"  border="4px solid" borderColor="black" borderLeftWidth="4px" borderLeftColor="black" align="center" justify="center">
-            <Lottie animationData={ManAndDogAnimData} loop={true} style={style} />
+            <Flex direction="column" width={["90vw","90vw","30vw"]} bg="brand.500" p="10" borderRightRadius={["0px","0px","25px"]}  border="4px solid" borderColor="black" borderLeftWidth="4px" borderLeftColor="black" align="center" justify="center" borderTop={["none","none","4px solid"]}>
+              <Lottie animationData={ManAndDogAnimData} loop={true} style={style} />
+            </Flex>
           </Flex>
-        </Flex>
+        </Flex> 
 
 
         <svg id="visual" viewBox="0 0 3200 225" xmlns="http://www.w3.org/2000/svg" version="1.1"><rect x="0" y="0" width="100%" height="100vh" fill="#F5EBE0"></rect><path d="M0 66L26.7 66.2C53.3 66.3 106.7 66.7 160 84.2C213.3 101.7 266.7 136.3 320 150.7C373.3 165 426.7 159 480 157.7C533.3 156.3 586.7 159.7 640 149.2C693.3 138.7 746.7 114.3 800 112.5C853.3 110.7 906.7 131.3 960 145.5C1013.3 159.7 1066.7 167.3 1120 159.7C1173.3 152 1226.7 129 1280 125C1333.3 121 1386.7 136 1440 127.5C1493.3 119 1546.7 87 1600 87.5C1653.3 88 1706.7 121 1760 137.8C1813.3 154.7 1866.7 155.3 1920 160.2C1973.3 165 2026.7 174 2080 164.3C2133.3 154.7 2186.7 126.3 2240 120.7C2293.3 115 2346.7 132 2400 124.8C2453.3 117.7 2506.7 86.3 2560 74.3C2613.3 62.3 2666.7 69.7 2720 78.2C2773.3 86.7 2826.7 96.3 2880 95.7C2933.3 95 2986.7 84 3040 75.2C3093.3 66.3 3146.7 59.7 3173.3 56.3L3200 53L3200 226L3173.3 226C3146.7 226 3093.3 226 3040 226C2986.7 226 2933.3 226 2880 226C2826.7 226 2773.3 226 2720 226C2666.7 226 2613.3 226 2560 226C2506.7 226 2453.3 226 2400 226C2346.7 226 2293.3 226 2240 226C2186.7 226 2133.3 226 2080 226C2026.7 226 1973.3 226 1920 226C1866.7 226 1813.3 226 1760 226C1706.7 226 1653.3 226 1600 226C1546.7 226 1493.3 226 1440 226C1386.7 226 1333.3 226 1280 226C1226.7 226 1173.3 226 1120 226C1066.7 226 1013.3 226 960 226C906.7 226 853.3 226 800 226C746.7 226 693.3 226 640 226C586.7 226 533.3 226 480 226C426.7 226 373.3 226 320 226C266.7 226 213.3 226 160 226C106.7 226 53.3 226 26.7 226L0 226Z" fill="#E3D5CA" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
@@ -131,7 +132,7 @@ export default function DonatePage() {
           minH="65vh"
           border="4px solid" borderColor="black"
           >
-            <Heading color="red.600">Donation Form</Heading>
+            <Heading color="red.600" size="2xl" fontWeight="900">Donation Form</Heading>
             {/* <Text color="red.600" fontSize="xs">If donation options fail to load, try reloading the page</Text> */}
             <Divider mb="5"/>
             <Flex direction="column" mb="5" hidden={donationPageIndex!=0}>
@@ -250,7 +251,7 @@ export default function DonatePage() {
             </Flex>
 
             <Flex direction="column" hidden={donationPageIndex!=1}>
-              <Heading size="4xl" color="green" mb="5">{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(+totalPaymentVal())}</Heading>
+              <Heading size="4xl" color="green" mb="5" fontWeight="700">{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(+totalPaymentVal())}</Heading>
               <Heading size="lg">Pay Now</Heading>
 
               <PayPalScriptProvider options={{ clientId:"test", currency: currency }}>

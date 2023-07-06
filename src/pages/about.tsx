@@ -8,7 +8,7 @@ import {
   Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, SimpleGrid, Card, CardHeader, CardBody, CardFooter, Icon
  } from "@chakra-ui/react"
 
- import { FaGithub, FaInstagram, FaLink, FaLinkedin } from "react-icons/fa";
+ import { FaPaw, FaInstagram, FaLink, FaLinkedin } from "react-icons/fa";
 
 
 export default function AboutPage() {
@@ -19,13 +19,16 @@ export default function AboutPage() {
         <Flex direction="column" bg="white">
           <Flex direction="column" gap="5" bg="brand.300" p="10">
 
-            <Flex direction="row" align="end" gap="5">
-              <Heading size="3xl">Partners</Heading>
-              <Link as={NextLink} href='/contact'>
-                <Button colorScheme='teal' border="4px solid" borderColor="black">
-                  Partner With Us!
-                </Button>
-              </Link>
+            <Flex direction={["column","column", "row"]} align={["start","start","end"]} gap="5">
+              <Heading size="3xl" fontWeight="900">Partners</Heading>
+                <Link as={NextLink} href='/contact'>
+                  <Button colorScheme='blue' border="4px solid" borderColor="black" fontWeight="900">
+                    <Flex direction="row" gap="10px" align="end">
+                      <Text>Partner With Us!</Text>
+                      <Icon as={FaPaw} boxSize="20px"/>  
+                    </Flex>
+                  </Button>
+                </Link>
             </Flex>
 
             <SimpleGrid minChildWidth='250px' spacing='40px'>
@@ -38,7 +41,7 @@ export default function AboutPage() {
                       borderRadius='lg'
                     />
                   <Flex direction="column" mt='6' gap='3'>
-                    <Heading size='md'>Paws In Prison</Heading>
+                    <Heading size='md' fontWeight="900">Paws In Prison</Heading>
                     <Text>
                       We are thankful of the valuable advice of Mrs. Keaton whose guidance taught us the first steps we needed to take
                     </Text>
@@ -57,7 +60,7 @@ export default function AboutPage() {
                       borderRadius='lg'
                     />
                   <Flex direction="column" mt='6' gap='3'>
-                    <Heading size='md'>Baylor Police Deparment</Heading>
+                    <Heading size='md' fontWeight="900">Baylor Police Deparment</Heading>
                     <Text>
                       for now just say we are thankful of the support of the sheriff
                     </Text>
@@ -75,7 +78,7 @@ export default function AboutPage() {
                       borderRadius='lg'
                     />
                   <Flex direction="column" mt='6' gap='3'>
-                    <Heading size='md'>Waco Police Deparment</Heading>
+                    <Heading size='md' fontWeight="900">Waco Police Deparment</Heading>
                     <Text>
                       for now just say we are thankful of the support of the sheriff
                     </Text>
@@ -93,7 +96,7 @@ export default function AboutPage() {
                       borderRadius='lg'
                     />
                   <Flex direction="column" mt='6' gap='3'>
-                    <Heading size='md'>Humane Society Central Texas</Heading>
+                    <Heading size='md' fontWeight="900">Humane Society Central Texas</Heading>
                     <Text>
                       we are thankful for the encouragement and willingness to supply shelter animals for us to connect with prisoners
                     </Text>
@@ -111,11 +114,14 @@ export default function AboutPage() {
 
           <Flex direction="column" gap="5" p="10" bg="brand.400">
 
-            <Flex direction="row" align="end" gap="5">
-              <Heading size="3xl">Team</Heading>
+            <Flex direction={["column","column", "row"]} align={["start","start","end"]} gap="5">
+              <Heading size="3xl" fontWeight="900">Team</Heading>
               <Link as={NextLink} href='/contact'>
-                <Button colorScheme='red' border="4px solid" borderColor="black">
-                  Join Our Team!
+                <Button colorScheme='red' border="4px solid" borderColor="black" fontWeight="900">
+                  <Flex direction="row" gap="10px" align="end">
+                    <Text>Join Our Team!</Text>
+                    <Icon as={FaPaw} boxSize="20px"/>  
+                  </Flex>
                 </Button>
               </Link>
             </Flex>
@@ -123,7 +129,7 @@ export default function AboutPage() {
             
             <SimpleGrid minChildWidth='400px' spacing='40px'>
 
-              <Card maxW="sm" bg="white" border="4px solid" borderColor="black">
+              <Card maxW={["xs","xs","sm"]} bg="white" border="4px solid" borderColor="black">
                 <CardBody>
                   <Image
                     src='https://media.licdn.com/dms/image/D5603AQFciK0GmJ1UqQ/profile-displayphoto-shrink_800_800/0/1683444317928?e=2147483647&v=beta&t=Gg6CQo_SwDHIg2z60BiVQHGMzrg_-uTKoXNZdVLBxys'
@@ -131,7 +137,7 @@ export default function AboutPage() {
                     borderRadius='lg'
                   />
                   <Flex direction="column" mt='6' gap='3'>
-                    <Heading size='lg'>Warren Huang</Heading>
+                    <Heading size='lg' fontWeight="900">Warren Huang</Heading>
                     <Text>
                       I love giving prisoners pets!
                     </Text>
@@ -143,7 +149,7 @@ export default function AboutPage() {
                 </CardBody>
               </Card>
 
-              <Card maxW='sm' bg="white" border="4px solid" borderColor="black">
+              <Card maxW={["xs","xs","sm"]} bg="white" border="4px solid" borderColor="black">
                 <CardBody>
                   <Image
                     src='https://media.licdn.com/dms/image/D5603AQHSh6HNmssAgA/profile-displayphoto-shrink_800_800/0/1686180407902?e=2147483647&v=beta&t=qVmSNaHshXEI6-nrz18BC6Cwff74Gke57t7pBfPYY9k'
@@ -151,7 +157,7 @@ export default function AboutPage() {
                     borderRadius='lg'
                   />
                   <Flex direction="column" mt='6' gap='3'>
-                    <Heading size='lg'>Ishan Dasgupta</Heading>
+                    <Heading size='lg' fontWeight="900">Ishan Dasgupta</Heading>
                     <Text>
                       I love programming!
                     </Text>
