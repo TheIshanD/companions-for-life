@@ -32,6 +32,7 @@ export default function RescuesPage() {
                         rescuesData.map((val, ind)=>{
                             return (
                             <AnimalCard 
+                                key={ind}
                                 name={val.name}
                                 description={val.smallDesc}
                                 imageLink={val.imageLink}
