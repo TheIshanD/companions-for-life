@@ -2,7 +2,7 @@
 import NextLink from 'next/link'
 
 import { 
-  Flex, Heading, Link, Box, Text, Grid, GridItem
+  Flex, Heading, Link, Box, Text, Grid, GridItem, chakra
  } from "@chakra-ui/react"
 
 import { FaEnvelope, FaPhone, FaInstagram, FaLinkedin } from "react-icons/fa";
@@ -14,8 +14,8 @@ export default function Header(props : FooterProps) {
 
     return (
         <Box>
-            <Flex direction="column">
-                <Flex direction="row" bg="brand.00" color="white" minH="250px" p="20px" gap="20px">
+            <Flex direction="column" borderY="4px solid" borderColor="black">
+                <Flex direction="row" bg="brand.600" color="#000000" minH="250px" p="20px" gap="20px" fontWeight="900">
                     <Flex direction="column" height="100%" width="50%"> 
                         <Flex direction="column" width="75%" gap="10px">
                             <Heading size={["sm","md","lg"]} fontWeight="900">Companions For Life</Heading>
@@ -32,7 +32,7 @@ export default function Header(props : FooterProps) {
                             textDecoration: "none",
                             color: "red.600"
                             }}>
-                            <Text fontSize={["xs","sm","md"]} width="100px">
+                            <Text fontSize={["xs","sm","sm"]} width="100px">
                             Mission Page
                             </Text>
                         </Link>
@@ -44,7 +44,7 @@ export default function Header(props : FooterProps) {
                             textDecoration: "none",
                             color: "red.600"
                             }}>
-                            <Text fontSize={["xs","sm","md"]}>
+                            <Text fontSize={["xs","sm","sm"]}>
                             The Team Page
                             </Text>
                         </Link>
@@ -56,7 +56,7 @@ export default function Header(props : FooterProps) {
                             textDecoration: "none",
                             color: "red.600"
                             }}>
-                            <Text fontSize={["xs","sm","md"]}>
+                            <Text fontSize={["xs","sm","sm"]}>
                             Contact Us Page
                             </Text>
                         </Link>
@@ -68,7 +68,7 @@ export default function Header(props : FooterProps) {
                             textDecoration: "none",
                             color: "red.600"
                             }}>
-                            <Text fontSize={["xs","sm","md"]}>
+                            <Text fontSize={["xs","sm","sm"]}>
                             Donate Page
                             </Text>
                         </Link>
@@ -77,20 +77,24 @@ export default function Header(props : FooterProps) {
                         <Heading size={["sm","md","lg"]} fontWeight="900">Contact Us</Heading>
                         <Flex direction="row" align="center" gap="10px">
                             <FaEnvelope />
-                            <Text fontSize={["3xs","2xs","md"]} overflowWrap="break-word">dummyemail@gmail.com</Text>
+                            <Text fontSize={["3xs","2xs","sm"]} overflowWrap="break-word">dummyemail@gmail.com</Text>
                         </Flex>
                         <Flex direction="row" align="center" gap="10px">
                             <FaPhone />
-                            <Text fontSize={["xs","sm","md"]}>1-512-555-555</Text>
+                            <Text fontSize={["xs","sm","sm"]}>1-512-555-555</Text>
                         </Flex>
-                        <Flex direction="row" align="center" gap="10px">
-                            <FaInstagram />
-                            <Text fontSize={["xs","sm","md"]}>Instagram Link</Text>
-                        </Flex>
-                        <Flex direction="row" align="center" gap="10px">
-                            <FaLinkedin />
-                            <Text fontSize={["xs","sm","md"]}>LinkedIn Link</Text>
-                        </Flex>
+                        <chakra.a href={"https://www.linkedin.com/"} _hover={{color: "red.600"}} target='_blank'>
+                            <Flex direction="row" align="center" gap="10px">
+                                <FaInstagram />
+                                <Text fontSize={["xs","sm","sm"]}>Our Instagram</Text>
+                            </Flex>
+                        </chakra.a>
+                        <chakra.a href={"https://www.instagram.com/"} _hover={{color: "red.600"}} target='_blank'>
+                            <Flex direction="row" align="center" gap="10px">
+                                <FaLinkedin />
+                                <Text fontSize={["xs","sm","sm"]}>Our LinkedIn</Text>
+                            </Flex>
+                        </chakra.a>
                     </Flex>
                 </Flex>
             </Flex>

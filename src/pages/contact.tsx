@@ -1,11 +1,12 @@
 
 import NextLink from 'next/link'
 
+
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 
 import { 
-  Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, Input, FormControl, FormLabel, FormHelperText, Textarea, FormErrorMessage, RadioGroup, Radio
+  Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, Input, FormControl, FormLabel, FormHelperText, Textarea, FormErrorMessage, RadioGroup, Radio, useColorModeValue,
  } from "@chakra-ui/react"
 import React, { useEffect } from 'react'
 
@@ -98,23 +99,24 @@ export default function ContactPage() {
                 <FormLabel>Reason For Email</FormLabel>
                 <RadioGroup onChange={setReason} value={reason}>
                   <Flex direction={["column","column","row"]} gap={["10px","10px","40px"]}>
-                    <Radio value='partner' bgColor="brand.100">Partnership</Radio>
-                    <Radio value='team' bgColor="brand.100">Joining the Team</Radio>
-                    <Radio value='other' bgColor="brand.100">Other Inquiries</Radio>
+                    <Radio value='partner' bgColor="brand.100" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Partnership</Radio>
+                    <Radio value='team' bgColor="brand.100" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Joining the Team</Radio>
+                    <Radio value='other' bgColor="brand.100" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Other Inquiries</Radio>
                   </Flex>
                 </RadioGroup>
                 <FormHelperText>*Changing your selection will reset the subject and body text</FormHelperText>
               </FormControl>
 
+
               <FormControl>
                 <FormLabel>Subject Line</FormLabel>
-                <Input placeholder="Sample Subject Line" value={subjectLineValue} onChange={(e)=>{setSubjectLineValue(e.target.value)}} bgColor="brand.100"/>
+                <Input placeholder="Sample Subject Line" value={subjectLineValue} onChange={(e)=>{setSubjectLineValue(e.target.value)}} bgColor="brand.100" border="4px solid" borderColor="black"/>
                 {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
               </FormControl>
 
               <FormControl>
                 <FormLabel>Body</FormLabel>
-                <Textarea minH={["600px","500px","400px"]} placeholder='Sample Email Body' resize="vertical" value={bodyValue} onChange={(e)=>{setBodyValue(e.target.value)}} bgColor="brand.100"/>
+                <Textarea minH={["600px","500px","400px"]} placeholder='Sample Email Body' resize="vertical" value={bodyValue} onChange={(e)=>{setBodyValue(e.target.value)}} bgColor="brand.100" border="4px solid" borderColor="black"/>
                 {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
               </FormControl>
 

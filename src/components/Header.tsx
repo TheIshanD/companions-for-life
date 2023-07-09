@@ -16,6 +16,7 @@ interface HeaderProps {
     isOnAbout? : boolean,
     isOnContact? : boolean,
     isOnDonate? : boolean,
+    isOnRescues? : boolean,
 }
 
 const style = {
@@ -23,7 +24,7 @@ const style = {
 };
 
 export default function Header(props : HeaderProps) {
-    const { isOnMission, isOnAbout, isOnContact, isOnDonate } = props;
+    const { isOnMission, isOnAbout, isOnContact, isOnDonate, isOnRescues } = props;
 
     return (
         <Box>
@@ -134,6 +135,32 @@ export default function Header(props : HeaderProps) {
                 }}>
                 <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
                 Donate
+                </Heading>
+            </Link>
+            }
+
+            {!isOnRescues && 
+            <Link 
+                as={NextLink}
+                href='/rescues'
+                _hover={{
+                textDecoration: "none",
+                color: "red.600"
+                }}>
+                <Heading as="h1" fontSize={["lg","lg","2xl"]}>
+                Rescues
+                </Heading>
+            </Link>
+            }
+            {isOnRescues && 
+            <Link 
+                color="blue.600"
+                href='/rescues'
+                _hover={{
+                textDecoration: "none",
+                }}>
+                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
+                Rescues
                 </Heading>
             </Link>
             }

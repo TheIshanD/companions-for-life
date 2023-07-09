@@ -16,7 +16,7 @@ export default function Home() {
       <Header isOnMission={true}/>
       <Box 
         backgroundImage={"url(https://ic.c4assets.com/brands/the-dog-house/5061c640-5174-451b-9798-0c11f6d56b4d.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90&resize=1200px:*)"} 
-        width="100vw" 
+        width="100%" 
         height="75vh" 
         backgroundSize="cover"
       >
@@ -24,7 +24,7 @@ export default function Home() {
           direction="column" 
           bg="rgba(0,0,0,0.6)"
 
-          width="100vw" 
+          width="100%" 
           height="75vh" 
           backgroundSize="cover"
 
