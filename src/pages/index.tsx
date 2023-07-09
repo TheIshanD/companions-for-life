@@ -22,7 +22,7 @@ export default function Home() {
       >
         <Flex
           direction="column" 
-          bg="rgba(0,0,0,0.8)"
+          bg="rgba(0,0,0,0.6)"
 
           width="100vw" 
           height="75vh" 
@@ -108,7 +108,7 @@ export default function Home() {
               </ListItem>
               <ListItem>
                 <ListIcon as={FaCheck} color="green.600"/>
-                Saving shelter animals' lives
+                Saving Shelter Animals&apos; lives
               </ListItem>
               <ListItem>
                 <ListIcon as={FaCheck} color="green.600"/>

@@ -15,7 +15,7 @@ export default function Header(props : FooterProps) {
     return (
         <Box>
             <Flex direction="column">
-                <Flex direction="row" bg="gray.600" color="white" minH="250px" p="20px" gap="20px">
+                <Flex direction="row" bg="brand.00" color="white" minH="250px" p="20px" gap="20px">
                     <Flex direction="column" height="100%" width="50%"> 
                         <Flex direction="column" width="75%" gap="10px">
                             <Heading size={["sm","md","lg"]} fontWeight="900">Companions For Life</Heading>

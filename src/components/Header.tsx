@@ -37,7 +37,7 @@ export default function Header(props : HeaderProps) {
             <Lottie animationData={animationData} loop={true} style={style} />
         </Flex>
 
-        <Flex direction="row" align="center" gap="50px" bg="white" justify="center" py="3" border="4px solid" borderColor="black" borderX="none">
+        <Flex direction="row" align="center" gap="50px" bg="white" justify="center" py="3" border="4px solid" borderColor="black" borderX="none" textAlign="center">
             {!isOnMission && 
             <Link 
                 as={NextLink}

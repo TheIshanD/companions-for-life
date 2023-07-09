@@ -30,7 +30,7 @@ Sincerely,
 const teamSubject = "Request To Join Partners For Life Team";
 const teamBody = `Dear Companions For Life Team,
 
-Hello! I am [NAME]. I am interested in joining Companions For Life's team.
+Hello! I am [NAME]. I am interested in joining the Companions For Life team.
 
 I am passionate and ready to help animals find safe homes while simultaneously providing better conditions and outcomes for prisoners. I am also ready to explore new avenues of aid.
 
@@ -52,7 +52,7 @@ export default function ContactPage() {
   const [subjectLineValue, setSubjectLineValue] = React.useState("");
   const [bodyValue, setBodyValue] = React.useState("");
 
-  const [reason, setReason] = React.useState("other");
+  const [reason, setReason] = React.useState("partner");
 
   useEffect(()=>{
     if(reason == "other") {
@@ -78,8 +78,8 @@ export default function ContactPage() {
         <Header isOnContact={true}/>
 
         <Flex direction="column" bg="brand.400" p={["20px","20px","40px"]}>
-          <Flex direction="column" border="4px solid" borderColor="black" borderRadius="25px">
-            <Flex id="contact-info-box" direction="column" bg="whitesmoke" p="5" borderTopRadius="25px" borderBottom="2px solid black" >
+          <Flex direction="column" border="4px solid" borderColor="black" borderRadius={["0px","0px","25px"]}>
+            <Flex id="contact-info-box" direction="column" bg="whitesmoke" p="20px" borderTopRadius={["0px","0px","25px"]} borderBottom="2px solid black" >
               <Heading mb="10px" size="2xl" fontWeight="900">Contact Information</Heading>
               <Flex direction="row" gap="10px" align="center">
                 <FaEnvelope />
@@ -91,7 +91,7 @@ export default function ContactPage() {
               </Flex>
             </Flex>
 
-            <Flex direction="column" bg="whitesmoke" p="5" borderBottomRadius="25px" borderTop="2px solid black" gap="5">
+            <Flex direction="column" bg="whitesmoke" p="5" borderBottomRadius={["0px","0px","25px"]} borderTop="2px solid black" gap="5">
               <Heading fontWeight="900" size="2xl">Email Template Generator</Heading>
 
               <FormControl>
@@ -100,7 +100,7 @@ export default function ContactPage() {
                   <Flex direction={["column","column","row"]} gap={["10px","10px","40px"]}>
                     <Radio value='partner' bgColor="brand.100">Partnership</Radio>
                     <Radio value='team' bgColor="brand.100">Joining the Team</Radio>
-                    <Radio value='other' bgColor="brand.100">Other</Radio>
+                    <Radio value='other' bgColor="brand.100">Other Inquiries</Radio>
                   </Flex>
                 </RadioGroup>
                 <FormHelperText>*Changing your selection will reset the subject and body text</FormHelperText>
@@ -114,13 +114,13 @@ export default function ContactPage() {
 
               <FormControl>
                 <FormLabel>Body</FormLabel>
-                <Textarea minH="400px" placeholder='Sample Email Body' resize="vertical" value={bodyValue} onChange={(e)=>{setBodyValue(e.target.value)}} bgColor="brand.100"/>
+                <Textarea minH={["600px","500px","400px"]} placeholder='Sample Email Body' resize="vertical" value={bodyValue} onChange={(e)=>{setBodyValue(e.target.value)}} bgColor="brand.100"/>
                 {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
               </FormControl>
 
               <FormControl>
                 <Button colorScheme='yellow' onClick={()=>{onButtonClick()}} border="4px solid" borderColor="black" fontWeight="900">Open in Email</Button>
-                <FormHelperText>Either copy and paste email or open in your computer's default email</FormHelperText>
+                <FormHelperText>Either copy and paste email or open in your computer&apos;s default email</FormHelperText>
               </FormControl>
             </Flex>
           </Flex>

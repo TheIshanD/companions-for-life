@@ -128,7 +128,7 @@ export default function DonatePage() {
           bg="white" 
           minW="50vw" 
           p="10"
-          borderRadius="25px"
+          borderRadius={["0px","0px","25px"]}
           minH="65vh"
           border="4px solid" borderColor="black"
           >
@@ -245,7 +245,7 @@ export default function DonatePage() {
                   </TabPanels>
                 </Tabs>
 
-                <Checkbox defaultChecked>Cover Paypal's Donation Fee of ~{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(computePaypalFee(donationValue()))} with
+                <Checkbox defaultChecked>Cover Paypal&apos;s Donation Fee of ~{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(computePaypalFee(donationValue()))} with
                        your {Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(donationValue())} donation</Checkbox>
               </Box>
             </Flex>
@@ -284,10 +284,10 @@ export default function DonatePage() {
             <Spacer></Spacer>
             <Flex direction="row" gap="10"  mt="5">
               <Box width="50%" hidden={donationPageIndex!=0}/>
-              <Button width="50%" colorScheme='yellow' hidden={donationPageIndex==0} onClick={()=>{setDonationPageIndex(donationPageIndex-1)}}>
+              <Button width="50%" colorScheme='yellow' hidden={donationPageIndex==0} onClick={()=>{setDonationPageIndex(donationPageIndex-1)}} border="4px solid" borderColor="black" fontWeight="900">
                 Back
               </Button>
-              <Button width="50%" colorScheme='yellow' hidden={donationPageIndex==1} onClick={OnNextClicked}>
+              <Button width="50%" colorScheme='yellow' hidden={donationPageIndex==1} onClick={OnNextClicked} border="4px solid" borderColor="black" fontWeight="900">
                 Next
               </Button>
               <Box width="50%" hidden={donationPageIndex!=1}/>
