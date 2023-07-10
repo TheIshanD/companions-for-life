@@ -7,7 +7,7 @@ import Footer from "../components/Footer"
 import { FaCheck, FaPaw } from "react-icons/fa";
 
 import { 
-  Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, List, ListItem, ListIcon, Icon
+  Flex, Heading, Link, Spacer, Image, Text, Box, Button, chakra, List, ListItem, ListIcon, Icon, position
  } from "@chakra-ui/react"
 
 export default function Home() {
@@ -15,10 +15,11 @@ export default function Home() {
     <Flex direction="column" bg="brand.100" minH="100vh">
       <Header isOnMission={true}/>
       <Box 
-        backgroundImage={"url(https://ic.c4assets.com/brands/the-dog-house/5061c640-5174-451b-9798-0c11f6d56b4d.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90&resize=1200px:*)"} 
+        backgroundImage={"url(https://www.rover.com/blog/wp-content/uploads/iStock-1143880146-min-e1642621923571.jpg)"} 
         width="100%" 
         height="75vh" 
         backgroundSize="cover"
+        backgroundPosition="top -50px center"
       >
         <Flex
           direction="column" 
@@ -28,13 +29,20 @@ export default function Home() {
           height="75vh" 
           backgroundSize="cover"
 
-          color="white"
+          color="#999999"
 
           align="center"
           justify="center"
           
           gap="2"
           
+          opacity="0"
+          transition={"1s ease-in-out"}
+
+          _hover={{
+            bg: "rgba(10,0,0,0.6)",
+            opacity: "1"
+          }}
         >
           <Heading size="4xl" color="white" textAlign="center" fontWeight="900" textColor="brand.100">
             Transforming Lives

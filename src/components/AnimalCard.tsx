@@ -18,7 +18,7 @@ interface AnimalCardProps {
 export default function AnimalCard(props : AnimalCardProps) {
     const { name, description, imageLink, imageAltText, link} = props;
     return (
-        <Card maxW="xs" bg="white" border="4px solid" borderColor="black" _hover={{bg: "red.100"}}>
+        <Card maxW="xs" bg="brand.100" border="4px solid" borderColor="black" transition="0.25s" _hover={{borderTopColor: "red.600", bg: "white", boxShadow: "5px 2px 2px black"}}>
             <chakra.a display="inline-block" href={link}>
             <CardBody>
                 <Image 

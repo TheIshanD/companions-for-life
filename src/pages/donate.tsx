@@ -24,6 +24,7 @@ export default function DonatePage() {
   const [donationPageIndex, setDonationPageIndex] = React.useState(0);
   const [customAmount, setCustomAmount] = React.useState(["0.00","0.00","0"])
   const [smallDonationError, SetSmallDonationError] = React.useState(false);
+  const [payingPaypalFee, setPayingPaypalFee] = React.useState(true);
 
   const currencies = ["USD", "EUR", "INR"];
   const onCurrencyChange = (index : number)=>{
@@ -56,15 +57,19 @@ export default function DonatePage() {
 
     const totalFee = donation * percentFee + fixedFee;
 
-    // return totalFee;
-    return 0;
+    return totalFee;
   } 
 
   const currencyInd = ()=>{return currencies.indexOf(currency)}
   const donationCode = ()=>{return donationAmount[currencyInd()]}
-  const donationValue = ()=>{return donationCode()=="custom"?+customAmount[0]:+donationCode()}
+  const donationValue = ()=>{return donationCode()=="custom"?+customAmount[currencyInd()]:+donationCode()}
   const currencySymbol = ()=>{return ["$","€","₹"][currencyInd()]}
-  const totalPaymentVal = ()=>{return (computePaypalFee(donationValue()) + donationValue()).toFixed(2).toString()}
+  const totalPaymentVal = ()=>{
+    if(payingPaypalFee) {
+      return (computePaypalFee(donationValue()) + donationValue()).toFixed(2).toString()
+    }
+    return donationValue().toFixed(2).toString()
+  }
 
   const OnNextClicked = ()=> {
     const currVal = donationValue();
@@ -245,8 +250,10 @@ export default function DonatePage() {
                   </TabPanels>
                 </Tabs>
 
-                <Checkbox defaultChecked>Cover Paypal&apos;s Donation Fee of ~{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(computePaypalFee(donationValue()))} with
-                       your {Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(donationValue())} donation</Checkbox>
+                <Checkbox isChecked={payingPaypalFee} onChange={(e)=>{setPayingPaypalFee(e.target.checked)}}>
+                  Cover Paypal&apos;s Donation Fee of ~{Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(computePaypalFee(donationValue()))} with
+                       your {Intl.NumberFormat("en-US", {style: "currency", currency: currency}).format(donationValue())} donation
+                </Checkbox>
               </Box>
             </Flex>
 
@@ -257,7 +264,7 @@ export default function DonatePage() {
               <PayPalScriptProvider options={{ clientId:"test", currency: currency }}>
                 <PayPalButtons 
                   // TODO: try adding label: 'donate' to style later
-                  style={{layout: "horizontal"}} 
+                  style={{layout: "horizontal", label: "donate"}} 
                   createOrder={(data, actions)=>{
                     return actions.order.create({
                       purchase_units: [

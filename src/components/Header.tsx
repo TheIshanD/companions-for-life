@@ -16,7 +16,8 @@ interface HeaderProps {
     isOnAbout? : boolean,
     isOnContact? : boolean,
     isOnDonate? : boolean,
-    isOnRescues? : boolean,
+    isOnRescuesHome? : boolean,
+    isOnRescuesPeripheral? : boolean,
 }
 
 const style = {
@@ -24,7 +25,7 @@ const style = {
 };
 
 export default function Header(props : HeaderProps) {
-    const { isOnMission, isOnAbout, isOnContact, isOnDonate, isOnRescues } = props;
+    const { isOnMission, isOnAbout, isOnContact, isOnDonate, isOnRescuesHome, isOnRescuesPeripheral } = props;
 
     return (
         <Box>
@@ -38,7 +39,7 @@ export default function Header(props : HeaderProps) {
             <Lottie animationData={animationData} loop={true} style={style} />
         </Flex>
 
-        <Flex direction="row" align="center" gap="50px" bg="white" justify="center" py="3" border="4px solid" borderColor="black" borderX="none" textAlign="center">
+        <Flex direction="row" align="center" gap={["10px","30px","40px","50px"]} bg="brand.100" justify="center" py="3" border="4px solid" borderColor="black" borderX="none" textAlign="center">
             {!isOnMission && 
             <Link 
                 as={NextLink}
@@ -139,7 +140,7 @@ export default function Header(props : HeaderProps) {
             </Link>
             }
 
-            {!isOnRescues && 
+            {(!isOnRescuesHome && !isOnRescuesPeripheral) && 
             <Link 
                 as={NextLink}
                 href='/rescues'
@@ -152,12 +153,25 @@ export default function Header(props : HeaderProps) {
                 </Heading>
             </Link>
             }
-            {isOnRescues && 
+            {isOnRescuesHome && 
             <Link 
+                color="blue.600"
+                _hover={{
+                textDecoration: "none", 
+                }}>
+                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
+                Rescues
+                </Heading>
+            </Link>
+            }
+            {isOnRescuesPeripheral && 
+            <Link 
+                as={NextLink}
                 color="blue.600"
                 href='/rescues'
                 _hover={{
-                textDecoration: "none",
+                textDecoration: "none", 
+                color: "red.600"
                 }}>
                 <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
                 Rescues

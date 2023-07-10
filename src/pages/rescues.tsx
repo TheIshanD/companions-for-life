@@ -14,35 +14,51 @@ import {
 import PartnerCard from '@/components/PartnerCard';
 import AnimalCard from '@/components/AnimalCard';
 
-
+interface rescueStructure {
+    name: string,
+    cardDesc: string,
+    bigDesc: string,
+    imageLink: string,
+    altImageText: string,
+    goingText: string,
+    foundText: string,
+    breedText: string,
+    learnedText: string,
+  }
 
 export default function RescuesPage() {
     const rescuesData = rescues.rescues;
 
     return (
         <Flex direction="column" bg="red.100" minH="100vh">
-            <Header isOnRescues={true}/>
+            <Header isOnRescuesHome={true}/>
 
             <Flex direction="column" bg="white">
                 <Flex direction="column" gap="5" bg="brand.300" p="10">
-                <Heading size="3xl" fontWeight="900">Our Rescues</Heading>
+                    <Heading size="3xl" fontWeight="900">Our Rescues</Heading>
 
-                <SimpleGrid minChildWidth='250px' spacing='40px'>
-                    {
-                        rescuesData.map((val, ind)=>{
-                            return (
-                            <AnimalCard 
-                                key={ind}
-                                name={val.name}
-                                description={val.smallDesc}
-                                imageLink={val.imageLink}
-                                imageAltText={val.altImageText}
-                                link={"/rescues/"+encodeURIComponent(ind.toString())}
-                            />
-                            )
-                        })
+                    <SimpleGrid minChildWidth='250px' spacing='40px'>
+                        {
+                            rescuesData.map((val : rescueStructure, ind)=>{
+                                return (
+                                <AnimalCard 
+                                    key={ind}
+                                    name={val.name}
+                                    description={val.cardDesc}
+                                    imageLink={val.imageLink}
+                                    imageAltText={val.altImageText}
+                                    link={"/rescues/"+encodeURIComponent(ind.toString())}
+                                />
+                                )
+                            })
+                        }
+                    </SimpleGrid>
+
+                    {rescuesData.length == 0 &&
+                            <Flex direction="column" justify="center" align="left" mb="50vh">
+                                <Heading size="4xl" fontWeight={"900"} color="red.600">Coming Soon!</Heading>
+                            </Flex>
                     }
-                </SimpleGrid>
                 </Flex>
             </Flex>
 

@@ -46,7 +46,17 @@ Sincerely,
 
 const otherSubject = "";
 const otherBody = 
-``;
+`Dear Companions For Life Team,
+
+Hello! I am [NAME]. I am emailing to discuss [REASON].
+
+[EMAIL_CONTENT]
+
+If you have any questions, you can reach me at [PREFERRED_CONTACT]. Thank you!
+
+Sincerely,
+[NAME]
+[PREFERRED_CONTACT]`;
 
 
 export default function ContactPage() {
@@ -80,7 +90,7 @@ export default function ContactPage() {
 
         <Flex direction="column" bg="brand.400" p={["20px","20px","40px"]}>
           <Flex direction="column" border="4px solid" borderColor="black" borderRadius={["0px","0px","25px"]}>
-            <Flex id="contact-info-box" direction="column" bg="whitesmoke" p="20px" borderTopRadius={["0px","0px","25px"]} borderBottom="2px solid black" >
+            <Flex id="contact-info-box" direction="column" bg="brand.100" p="20px" borderTopRadius={["0px","0px","25px"]} borderBottom="2px solid black" >
               <Heading mb="10px" size="2xl" fontWeight="900">Contact Information</Heading>
               <Flex direction="row" gap="10px" align="center">
                 <FaEnvelope />
@@ -92,16 +102,16 @@ export default function ContactPage() {
               </Flex>
             </Flex>
 
-            <Flex direction="column" bg="whitesmoke" p="5" borderBottomRadius={["0px","0px","25px"]} borderTop="2px solid black" gap="5">
+            <Flex direction="column" bg="brand.100" p="5" borderBottomRadius={["0px","0px","25px"]} borderTop="2px solid black" gap="5">
               <Heading fontWeight="900" size="2xl">Email Template Generator</Heading>
 
               <FormControl>
-                <FormLabel>Reason For Email</FormLabel>
+                <FormLabel fontWeight="900">Reason For Email</FormLabel>
                 <RadioGroup onChange={setReason} value={reason}>
                   <Flex direction={["column","column","row"]} gap={["10px","10px","40px"]}>
-                    <Radio value='partner' bgColor="brand.100" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Partnership</Radio>
-                    <Radio value='team' bgColor="brand.100" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Joining the Team</Radio>
-                    <Radio value='other' bgColor="brand.100" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Other Inquiries</Radio>
+                    <Radio value='partner' bgColor="white" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Partnership</Radio>
+                    <Radio value='team' bgColor="white" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Joining the Team</Radio>
+                    <Radio value='other' bgColor="white" border="4px solid" borderColor="black" _checked={{border: "4px solid", borderColor:"blue.600"}}>Other Inquiries</Radio>
                   </Flex>
                 </RadioGroup>
                 <FormHelperText>*Changing your selection will reset the subject and body text</FormHelperText>
@@ -109,14 +119,14 @@ export default function ContactPage() {
 
 
               <FormControl>
-                <FormLabel>Subject Line</FormLabel>
-                <Input placeholder="Sample Subject Line" value={subjectLineValue} onChange={(e)=>{setSubjectLineValue(e.target.value)}} bgColor="brand.100" border="4px solid" borderColor="black"/>
+                <FormLabel fontWeight="900">Subject Line</FormLabel>
+                <Input placeholder="Sample Subject Line" value={subjectLineValue} onChange={(e)=>{setSubjectLineValue(e.target.value)}} bgColor="white" border="4px solid" borderColor="black"/>
                 {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
               </FormControl>
 
               <FormControl>
-                <FormLabel>Body</FormLabel>
-                <Textarea minH={["600px","500px","400px"]} placeholder='Sample Email Body' resize="vertical" value={bodyValue} onChange={(e)=>{setBodyValue(e.target.value)}} bgColor="brand.100" border="4px solid" borderColor="black"/>
+                <FormLabel fontWeight="900">Body</FormLabel>
+                <Textarea minH={["600px","500px","400px"]} placeholder='Sample Email Body' resize="vertical" value={bodyValue} onChange={(e)=>{setBodyValue(e.target.value)}} bgColor="white" border="4px solid" borderColor="black"/>
                 {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
               </FormControl>
 

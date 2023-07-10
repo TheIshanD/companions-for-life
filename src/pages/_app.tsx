@@ -8,6 +8,8 @@ import '@fontsource-variable/raleway';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/nunito';
 
+import Head from 'next/head'
+
 
 
 const theme = extendTheme({
@@ -31,6 +33,9 @@ const theme = extendTheme({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
+      <Head>
+        <title>Companions For Life</title>
+      </Head>
       <Component {...pageProps} />
     </ChakraProvider>);
 }

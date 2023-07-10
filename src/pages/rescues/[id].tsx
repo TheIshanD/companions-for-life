@@ -19,10 +19,14 @@ import React, { useEffect } from 'react';
 
 interface rescueStructure {
   name: string,
-  smallDesc: string,
+  cardDesc: string,
   bigDesc: string,
   imageLink: string,
   altImageText: string,
+  goingText: string,
+  foundText: string,
+  breedText: string,
+  learnedText: string,
 }
 
 export default function RescuesPage() {
@@ -34,25 +38,53 @@ export default function RescuesPage() {
   var thisRescue : rescueStructure;
 
   if(typeof router.query.id === "string") {
-    thisRescue = rescuesData[parseInt(router.query.id!)];
-    if(loadContent==false) {
-      setLoadContent(true)
+    const index = parseInt(router.query.id!)
+    if(!isNaN(index) && index < rescuesData.length) {
+      thisRescue = rescuesData[parseInt(router.query.id!)];
+      if(loadContent==false) {
+        setLoadContent(true)
+      }
     }
   }
 
   return (
     <Flex direction="column" bg="red.100" minH="100vh">
-        <Header isOnRescues={true}/>
+        <Header isOnRescuesPeripheral={true}/>
 
         <Flex direction="column" bg="white">
             {loadContent &&
-              <Flex direction="column" gap="5" bg="brand.300" p="10" align="center" >
-                <Flex direction="column" bg="brand.200" width="70%" align="center" p="20px" border="0px solid" borderColor="black" borderRadius="25px">
-                  <Image display="block" width={["100%","100%","100%","60%"]} height="auto" src="https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg?w=400&h=300&c=crop" border="4px solid" borderColor="black" borderRadius="25px"/>
+              <Flex direction={["column","column","row"]} gap="5" bg="brand.300" p="10" >
+                <Flex direction="column" width={["100%","100%","50%"]} bg="brand.200" align="center" px={["0","10px","20px"]} py={["0","10px","20px","140px"]} border="0px solid" borderColor="black" borderRadius="25px">
+                  <Image display="block" width={["100%","100%","100%"]} height={["auto","auto","auto"]} src={thisRescue!.imageLink} border="4px solid" borderColor="black" borderRadius="25px"/>
                 </Flex>
-                <Heading size="4xl" fontWeight="900">{thisRescue!.name}</Heading>
+                <Flex direction="column" textAlign="center" width={["100%","100%","50%"]} bg="brand.100" p="20px" border="4px solid" borderColor="black" borderRadius="25px">
+                  <Flex direction="row" align="baseline" gap="20px">
+                    <Heading size="3xl" fontWeight="900" textAlign="center">{thisRescue!.name}</Heading>
+                    <Icon as={FaPaw} boxSize="3rem"/>
+                  </Flex>
+
+                  <Flex direction="column" textAlign="left" gap="40px" mt="50px">
+                    <Flex direction="column">
+                      <Heading size="lg">Where Am I <chakra.span color="red.600">Going?</chakra.span></Heading>
+                      <Text fontSize="xl">{thisRescue!.goingText}</Text>
+                    </Flex>
+                    <Flex direction="column">
+                      <Heading size="lg">How Was I <chakra.span color="blue.600">Found?</chakra.span></Heading>
+                      <Text fontSize="xl">{thisRescue!.foundText}</Text>
+                    </Flex>
+                    <Flex direction="column">
+                      <Heading size="lg">Whats My <chakra.span color="green.600">Breed?</chakra.span></Heading>
+                      <Text fontSize="xl">{thisRescue!.breedText}</Text>
+                    </Flex>
+                    <Flex direction="column">
+                      <Heading size="lg">What Have I <chakra.span color="yellow.600">Learned?</chakra.span></Heading>
+                      <Text fontSize="xl">{thisRescue!.learnedText}</Text>
+                    </Flex>
+                  </Flex>
+                </Flex>
               </Flex>
             }
+            {!loadContent && <Flex direction="column" gap="5" bg="brand.300" p="10" align="center" height="100vh" />}
         </Flex>
 
         <Footer/>
