@@ -35,7 +35,9 @@ export default function RescuesPage() {
 
             <Flex direction="column" bg="white">
                 <Flex direction="column" gap="5" bg="brand.300" p="10">
-                    <Heading size="3xl" fontWeight="900">Our Rescues</Heading>
+                    {rescuesData.length != 0 &&
+                        <Heading size="3xl" fontWeight="900">Our Rescues</Heading>
+                    }
 
                     <SimpleGrid minChildWidth='250px' spacing='40px'>
                         {
@@ -55,7 +57,7 @@ export default function RescuesPage() {
                     </SimpleGrid>
 
                     {rescuesData.length == 0 &&
-                            <Flex direction="column" justify="center" align="left" mb="50vh">
+                            <Flex direction="column" justify="center" align="center" mb="50vh">
                                 <Heading size="4xl" fontWeight={"900"} color="red.600">Coming Soon!</Heading>
                             </Flex>
                     }

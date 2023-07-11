@@ -263,8 +263,8 @@ export default function DonatePage() {
 
               <PayPalScriptProvider options={{ clientId:"test", currency: currency }}>
                 <PayPalButtons 
-                  // TODO: try adding label: 'donate' to style later
-                  style={{layout: "horizontal", label: "donate"}} 
+                  // TODO: try adding label: 'donate' to style later and mabye uncommenting the donate things: I don't really know
+                  style={{layout: "horizontal"}} 
                   createOrder={(data, actions)=>{
                     return actions.order.create({
                       purchase_units: [
@@ -272,7 +272,18 @@ export default function DonatePage() {
                           amount: {
                             currency_code: currency,
                             value: totalPaymentVal(),
-                          }
+                          },
+                        //   items: [
+                        //     {
+                        //         name: "donation-example",
+                        //         quantity: "1",
+                        //         unit_amount: {
+                        //             currency_code: "USD",
+                        //             value: "2",
+                        //         },
+                        //         category: "DONATION",
+                        //     },
+                        // ],
                         }
                       ]
                     })

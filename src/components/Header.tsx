@@ -65,6 +65,45 @@ export default function Header(props : HeaderProps) {
             </Link>
             }
 
+            {(!isOnRescuesHome && !isOnRescuesPeripheral) && 
+            <Link 
+                as={NextLink}
+                href='/rescues'
+                _hover={{
+                textDecoration: "none",
+                color: "red.600"
+                }}>
+                <Heading as="h1" fontSize={["lg","lg","2xl"]}>
+                Rescues
+                </Heading>
+            </Link>
+            }
+            {isOnRescuesHome && 
+            <Link 
+                color="blue.600"
+                _hover={{
+                textDecoration: "none", 
+                }}>
+                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
+                Rescues
+                </Heading>
+            </Link>
+            }
+            {isOnRescuesPeripheral && 
+            <Link 
+                as={NextLink}
+                color="blue.600"
+                href='/rescues'
+                _hover={{
+                textDecoration: "none", 
+                color: "red.600"
+                }}>
+                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
+                Rescues
+                </Heading>
+            </Link>
+            }
+
             {!isOnAbout && 
             <Link 
                 as={NextLink}
@@ -136,45 +175,6 @@ export default function Header(props : HeaderProps) {
                 }}>
                 <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
                 Donate
-                </Heading>
-            </Link>
-            }
-
-            {(!isOnRescuesHome && !isOnRescuesPeripheral) && 
-            <Link 
-                as={NextLink}
-                href='/rescues'
-                _hover={{
-                textDecoration: "none",
-                color: "red.600"
-                }}>
-                <Heading as="h1" fontSize={["lg","lg","2xl"]}>
-                Rescues
-                </Heading>
-            </Link>
-            }
-            {isOnRescuesHome && 
-            <Link 
-                color="blue.600"
-                _hover={{
-                textDecoration: "none", 
-                }}>
-                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
-                Rescues
-                </Heading>
-            </Link>
-            }
-            {isOnRescuesPeripheral && 
-            <Link 
-                as={NextLink}
-                color="blue.600"
-                href='/rescues'
-                _hover={{
-                textDecoration: "none", 
-                color: "red.600"
-                }}>
-                <Heading as="h1" fontSize={["lg","lg","2xl"]} fontWeight="900">
-                Rescues
                 </Heading>
             </Link>
             }
